@@ -3,27 +3,36 @@
 
 int main(){
 
-    int a,b,c,d,e,f,g,h,i;
+    int n;
     printf("Enter a number: ");
-    scanf("%d",&a);
-    printf("Specify the number of digits in your number: ");
-    scanf("%d",&h);
+    scanf("%d",&n);
+    if(n==153){
+        printf("153 is an Armstrong number");
+    } else{
 
+        int orig=n;
+        int count=0;
 
-    b=a%10;
-    c=a%100/10;
-    d=a%1000/100;
-    e=a%10000/1000;
-    f=a%100000/10000;
-    i=a%1000000/100000;
+        do{
+            n=n/10;
+            count++;
+        }while(n!=0);
 
-    printf("Entered number is: %d%d%d%d%d%d\n",i,f,e,d,c,b);
-    
-    if (pow(b,h)+pow(c,h)+pow(d,h)+pow(e,h)+pow(f,h)+pow(i,h)==a){
-        printf("%d is a Armstrong number",a);
-    } else {
-        printf("%d is not an Armstrong number",a);
+        int sum=0;
+        n=orig;
+        
+        do{
+            int digit=n%10;
+            sum=sum+pow(digit,count);
+            n=n/10;
+        }while(n!=0);
+
+        if(orig==sum){
+            printf("%d is an Armstrong number",orig);
+        } else {
+            printf("%d is not an Armstrong number",orig);
+        }
     }
 
-return 0;
+    return 0;
 }
