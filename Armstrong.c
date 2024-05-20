@@ -1,37 +1,38 @@
 #include<stdio.h>
-#include<math.h>
+
+int power(int b, int e){
+    int pow=1;
+    for(int i=0;i<e;i++){
+        pow=pow*b;
+    }
+    return pow;
+}
 
 int main(){
 
     int n;
     printf("Enter a number: ");
     scanf("%d",&n);
-    if(n==153){
-        printf("153 is an Armstrong number");
+    
+    int original=n;
+    int count=0;
+    while(n!=0){
+        n=n/10;
+        count++;
+    }
+
+    n=original;
+    int sum=0;
+    while(n!=0){
+        int digit=n%10;
+        sum=sum+power(digit,count);
+        n=n/10;
+    }
+
+    if(sum==original){
+        printf("%d is an Armstrong number",original);
     } else{
-
-        int orig=n;
-        int count=0;
-
-        do{
-            n=n/10;
-            count++;
-        }while(n!=0);
-
-        int sum=0;
-        n=orig;
-        
-        do{
-            int digit=n%10;
-            sum=sum+pow(digit,count);
-            n=n/10;
-        }while(n!=0);
-
-        if(orig==sum){
-            printf("%d is an Armstrong number",orig);
-        } else {
-            printf("%d is not an Armstrong number",orig);
-        }
+        printf("%d is not an Armstrong number",original);
     }
 
     return 0;
